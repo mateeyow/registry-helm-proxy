@@ -15,12 +15,20 @@ services:
       - registry:/var/lib/registry
     environment:
       - VIRTUAL_HOST=rscdev.azurecr.io
-      - VIRTUAL_PORT=50000
+      - VIRTUAL_PORT=5000
 
   helm:
     build:
-      context: .
+      context: ./
     restart: always
+    volumes:
+      - helm:/root/.helm/repository/local
     environment:
       - VIRTUAL_HOST=charts.stage.rsc7.com
       - VIRTUAL_PORT=8879
+
+volumes:
+  registry:
+    external: true
+  helm:
+    external: true
