@@ -10,4 +10,6 @@ RUN mkdir -p /root/.helm/repository/local
 
 ENTRYPOINT ["/usr/local/bin/helm"]
 
-CMD ["serve"]
+EXPOSE 8879
+
+CMD ["serve", "--address", "0.0.0.0:8879"]
